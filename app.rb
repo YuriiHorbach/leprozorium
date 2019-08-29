@@ -6,12 +6,12 @@ require 'sqlite3'
 
 #db init
 def init_db
-	@db = SQLite3::DataBase.new 'leprozorium.db'
-	@db.resusts_as_hash = true
+	@db = SQLite3::Database.new 'leprozorium.db'
+	@db.results_as_hash = true
 end
 
 before do
-
+	init_db
 end
 
 get '/' do
