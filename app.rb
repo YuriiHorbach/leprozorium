@@ -49,5 +49,14 @@ post '/new' do
 	content = params[:content] #add name of form how to call the textarea
 
 
+	#check patameters if post is empty
+	if content.length <= 0
+		@error = 'Type post text'
+		return erb :new
+	end
+
+
+
+
   	erb "You typed #{content}"
 end
