@@ -12,3 +12,11 @@ end
 get '/new' do
   erb :new
 end
+
+post '/new' do
+
+	@content = params[:content] #add name of form how to call the textarea
+
+
+  	erb "You typed #{@content}"
+end
