@@ -29,6 +29,9 @@ end
 
 
 get '/' do
+	#get data from db
+
+	@results = @db.execute 'select * from Posts order by id desc'
 	erb :index
 end
 
@@ -37,9 +40,7 @@ end
 # browser get data from server
 
 get '/new' do
-	#get data from db
 
-	@results = @db.execute 'select * from Posts order by id desc'
 
 	erb :new
 end
