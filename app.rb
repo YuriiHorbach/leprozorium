@@ -10,6 +10,7 @@ def init_db
 	@db.results_as_hash = true
 end
 
+#will execute before any get and post
 before do
 	init_db
 end
@@ -25,7 +26,6 @@ configure do
 	)'
 end
 
-#will execute before any get and post
 
 
 get '/' do
@@ -33,13 +33,19 @@ get '/' do
 end
 
 
+# handler get query /new
+# browser get data from server
 
 get '/new' do
   erb :new
 end
 
-post '/new' do
 
+# handler post query /new
+# browser send data to server
+
+post '/new' do
+	#get variable from post
 	content = params[:content] #add name of form how to call the textarea
 
 
