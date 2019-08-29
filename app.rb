@@ -29,7 +29,7 @@ end
 
 
 get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
+	erb :index
 end
 
 
@@ -37,7 +37,11 @@ end
 # browser get data from server
 
 get '/new' do
-  erb :new
+	#get data from db
+
+	@results = @db.execute 'select * from Posts order by id desc'
+
+	erb :new
 end
 
 
@@ -55,6 +59,7 @@ post '/new' do
 		return erb :new
 	end
 
+	#save data to bd
 	@db.execute 'insert into Posts (content, create_date) values (?, datetime())', [content]
 
 
