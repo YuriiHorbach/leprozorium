@@ -31,7 +31,7 @@ configure do
     	id INTEGER PRIMARY KEY ASC AUTOINCREMENT,
     	create_date DATE,
     	content TEXT,
-    	post_id, integer
+    	post_id integer
 	)'
 end
 
