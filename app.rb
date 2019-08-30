@@ -91,11 +91,16 @@ get '/details/:post_id' do
 	#take than 1 post in variable row
 	@row = results[0]
 
+
+	#get comment for our post
+
+	@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
+
 	#return post in details.erb
-	erb :details
+	erb :details 
 
 end
-
+ 
 
 #post handler
 #(browser send data to server and we get data)
