@@ -22,7 +22,8 @@ configure do
 	(
     	id INTEGER PRIMARY KEY ASC AUTOINCREMENT,
     	create_date DATE,
-    	content TEXT
+    	content TEXT,
+    	author
 	)'
 
 	@db.execute 'CREATE TABLE  IF NOT EXISTS Comments 
@@ -60,6 +61,7 @@ end
 post '/new' do
 	#get variable from post
 	content = params[:content] #add name of form how to call the textarea
+	author = params[:author]
 
 
 	#check patameters if post is empty
@@ -69,7 +71,7 @@ post '/new' do
 	end
 
 	#save data to bd
-	@db.execute 'insert into Posts (content, create_date) values (?, datetime())', [content]
+	@db.execute 'insert into Posts (content, create_date, author) values (?, datetime(),?)', [content, author]
 
 
 	#redirect to main page
@@ -91,8 +93,9 @@ get '/details/:post_id' do
 	#take than 1 post in variable row
 	@row = results[0]
 
+	comment = params[:content]
 
-	#get comment for our post
+	
 
 	@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
 
@@ -108,6 +111,13 @@ post '/details/:post_id' do
 	#get variable from url
 	post_id = params[:post_id]
 	content = params[:content]
+
+
+	# get comment for our post
+	# if content.length <= 0 
+	# 	@error = 'Type comment text'
+	# 	return erb :details
+	# end
 
 	#save data to bd
 	@db.execute 'insert into Comments 

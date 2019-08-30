@@ -1,6 +1,8 @@
 <h4>Post details</h4>
 
 <p>
+	
+
 	<%= @row['content']%>
 		<br>
 		<br>
@@ -11,7 +13,7 @@
 <br>
 <% @comments.each do |comment| %>
 	<p>
-		<%= comment['content']%>
+		<%= comment['content']%> 
 		<br>
 		<br>
 		<span style="font-size: 75%; color: #999;">Added at <%= comment['create_date']%></span>
