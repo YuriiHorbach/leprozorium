@@ -87,3 +87,15 @@ get '/details/:post_id' do
 	erb :details
 
 end
+
+
+#post handler
+#(browser send data to server and we get data)
+post '/details/:post_id' do
+	#get variable from url
+	post_id = params[:post_id]
+	content = params[:content]
+
+	erb "You typed commetn #{content} for post #{post_id}"
+
+end
