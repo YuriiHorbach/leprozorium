@@ -109,7 +109,19 @@ post '/details/:post_id' do
 	post_id = params[:post_id]
 	content = params[:content]
 
+	 results = @db.execute 'select * from Posts where id = ?', [post_id]
 
+	#take than 1 post in variable row
+	 @row = results[0]
+
+	
+	 @comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
+	
+
+	if content.length <= 0
+		@error = 'Type comment`s text'
+		return erb :details
+	end
 
 	#save data to bd
 	@db.execute 'insert into Comments 

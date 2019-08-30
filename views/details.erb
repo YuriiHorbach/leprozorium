@@ -8,19 +8,28 @@
 			<br><br>
 
 			Added at <span style="font-size: 150%; color:green;"><%= @row['create_date']%></span>
+				<br>
+			How many comments:
+
+			 <%=!defined?(@a) ? x = @a : nil%>
 
 		</p>
 
+<% @x = 0%>
 <% @comments.each do |comment|%>
 		
 		<p>
 			<%= comment['content']%>
+			<% @x += 1 %>
+
 		</p>
 		<br>
 		<span style="font-size: 75%; color: #999">Added at <%= comment['create_date']%></span>
 		<hr>
+
 <%end%>
 
+ <% @x == @a%>
 <form action="/details/<%= @row['id']%>" method="POST" role="form">
 		<textarea name="content" id="fomcomment" rows="6" class="form-control"></textarea >
 		<br>
