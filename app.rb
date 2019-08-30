@@ -23,7 +23,7 @@ configure do
     	id INTEGER PRIMARY KEY ASC AUTOINCREMENT,
     	create_date DATE,
     	content TEXT,
-    	author
+    	author TEXT
 	)'
 
 	@db.execute 'CREATE TABLE  IF NOT EXISTS Comments 
@@ -93,10 +93,7 @@ get '/details/:post_id' do
 	#take than 1 post in variable row
 	@row = results[0]
 
-	comment = params[:content]
-
 	
-
 	@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
 
 	#return post in details.erb
@@ -105,19 +102,14 @@ get '/details/:post_id' do
 end
  
 
-#post handler
-#(browser send data to server and we get data)
+# post handler
+# (browser send data to server and we get data)
 post '/details/:post_id' do
 	#get variable from url
 	post_id = params[:post_id]
 	content = params[:content]
 
 
-	# get comment for our post
-	# if content.length <= 0 
-	# 	@error = 'Type comment text'
-	# 	return erb :details
-	# end
 
 	#save data to bd
 	@db.execute 'insert into Comments 
